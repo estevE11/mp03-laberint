@@ -3,19 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a2cf63a6-0c7f-4651-9960-e9967ca98362" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/mp03-laberint/cat/esteve/laberint/entities/Entity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/mp03-laberint/cat/esteve/laberint/entities/Entity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/mp03-laberint/cat/esteve/laberint/entities/Pickaxe.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/mp03-laberint/cat/esteve/laberint/entities/Pickaxe.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/mp03-laberint/cat/esteve/laberint/entities/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/mp03-laberint/cat/esteve/laberint/entities/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/mp03-laberint/cat/esteve/laberint/level/Level$Tiles.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/mp03-laberint/cat/esteve/laberint/level/Level$Tiles.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/mp03-laberint/cat/esteve/laberint/level/Level.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/mp03-laberint/cat/esteve/laberint/level/Level.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/mp03-laberint/cat/esteve/laberint/level/LevelLoader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/mp03-laberint/cat/esteve/laberint/level/LevelLoader.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/mp03-laberint/cat/esteve/laberint/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/mp03-laberint/cat/esteve/laberint/main/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/levels/test_level.lvl" beforeDir="false" afterPath="$PROJECT_DIR$/res/levels/test_level.lvl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cat/esteve/laberint/entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cat/esteve/laberint/entities/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cat/esteve/laberint/entities/Pickaxe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cat/esteve/laberint/entities/Pickaxe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cat/esteve/laberint/entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cat/esteve/laberint/entities/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cat/esteve/laberint/level/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cat/esteve/laberint/level/Level.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cat/esteve/laberint/level/LevelLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cat/esteve/laberint/level/LevelLoader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cat/esteve/laberint/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cat/esteve/laberint/main/Main.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -95,7 +83,7 @@
       <workItem from="1580136159171" duration="8127000" />
       <workItem from="1580147239596" duration="4427000" />
       <workItem from="1580215486021" duration="1884000" />
-      <workItem from="1580224746541" duration="5078000" />
+      <workItem from="1580224746541" duration="5304000" />
     </task>
     <servers />
   </component>

@@ -81,7 +81,9 @@ public class Main implements Runnable {
 
     private void renderHUD() {
         int lives = this.level.getMainPlayer().getLives();
-        canvas.renderText("Lives: " + lives, 10, 30, 20, Color.white);
+        for(int i = 0; i < lives; i++) {
+            canvas.fill(i*20 + 10,10, 10, 20, Color.red);
+        }
     }
 
     public void onKeyDown(int key) {

@@ -53,7 +53,14 @@ public class Entity {
         points[3] = new Point((int) (this.x + this.w-1 + xa), (int) (this.y + this.h-1 + ya)); // Bot right
 
         for(Point p : points) {
-            if(this.level.getTileAt(p.x, p.y).id != Level.Tiles.FLOOR.id) solid = true;
+            if(solid) break;
+            int id = this.level.getTileAt(p.x, p.y).id;
+            if(id == Level.Tiles.WALL.id) solid = true;
+            else if(id == Level.Tiles.BOMB.id) {solid = true; this.die();}
+            else if(id == Level.Tiles.END.id) {
+                System.out.println("PLAYER WON!");
+                System.exit(9999);
+            }
         }
 
         return solid;

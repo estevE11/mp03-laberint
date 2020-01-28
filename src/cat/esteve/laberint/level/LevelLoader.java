@@ -44,12 +44,16 @@ public class LevelLoader {
                 char t = line.charAt(x);
                 switch(t) {
                     case '0':
-                    case '@':
-                    case 's':
                         data.tiles[x][y] = Level.Tiles.FLOOR;
                         break;
                     case '1':
                         data.tiles[x][y] = Level.Tiles.WALL;
+                        break;
+                    case '@':
+                        data.tiles[x][y] = Level.Tiles.BOMB;
+                        break;
+                    case 's':
+                        data.tiles[x][y] = Level.Tiles.END;
                         break;
                     case 'p':
                         data.tiles[x][y] = Level.Tiles.FLOOR;
@@ -67,7 +71,7 @@ public class LevelLoader {
                         break;
                     case 't':
                         Pickaxe pick = new Pickaxe();
-                        pick.setPosition(x*Level.Tiles.w+10, y*Level.Tiles.h+10);
+                        pick.setPosition(x*Level.Tiles.w+20, y*Level.Tiles.h+20);
                         data.entities.add(pick);
                         data.tiles[x][y] = Level.Tiles.FLOOR;
                         break;

@@ -13,7 +13,8 @@ public class Level {
     public enum Tiles {
         FLOOR(0, Color.gray),
         WALL(1, Color.blue),
-        BOMB(2, Color.red);
+        BOMB(2, Color.gray),
+        END(3, Color.green);
 
         public int id;
         public Color color;
@@ -121,5 +122,9 @@ public class Level {
             return Tiles.WALL;
         }
         return this.tiles[xx][yy];
+    }
+
+    public Player getMainPlayer() {
+        return this.player;
     }
 }

@@ -11,8 +11,8 @@ public class Pickaxe extends Entity {
 
     public void init(Level level) {
         super.init(level);
-        this.w = Level.Tiles.w-20;
-        this.h = Level.Tiles.h-20;
+        this.w = Level.Tiles.w-40;
+        this.h = Level.Tiles.h-40;
         this.color = Color.PINK;
     }
 

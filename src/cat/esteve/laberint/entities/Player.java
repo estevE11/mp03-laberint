@@ -8,6 +8,7 @@ import java.awt.*;
 public class Player extends Entity{
 
     private double speed = 3;
+    private int lives = 3;
 
     private boolean hasPickaxe = false;
 
@@ -32,16 +33,24 @@ public class Player extends Entity{
 
     public void onCollide(Entity other) {
         if(other instanceof Rock) {
+            double dx = Math.abs(this.x - other.getX());
+            double dy = Math.abs(this.y - other.getY());
             if(this.hasPickaxe) {
-                if(this.vx > 0) other.setPosition(this.x + this.w, other.getY());
-                else if(this.vx < 0) other.setPosition(this.x - other.getW(), other.getY());
-                if(this.vy > 0) other.setPosition(other.getX(), this.y + this.h);
-                else if(this.vy < 0) other.setPosition(other.getX(), this.y - other.getH());
+                if(dx > dy) {
+                    if (this.vx > 0) other.setPosition(this.x + this.w, other.getY());
+                    else if (this.vx < 0) other.setPosition(this.x - other.getW(), other.getY());
+                } else {
+                    if (this.vy > 0) other.setPosition(other.getX(), this.y + this.h);
+                    else if (this.vy < 0) other.setPosition(other.getX(), this.y - other.getH());
+                }
             } else {
-                if(this.vx > 0) this.setPosition(other.getX()-this.w, this.y);
-                else if(this.vx < 0) this.setPosition(other.getX() - other.getW(), this.y);
-                if(this.vy > 0) this.setPosition(this.x, other.getY()-this.h);
-                else if(this.vy < 0) this.setPosition(this.x, other.getY() - other.getH());
+                if(dx > dy) {
+                    if(this.vx > 0) this.setPosition(other.getX()-this.w, this.y);
+                    else if(this.vx < 0) this.setPosition(other.getX() - other.getW(), this.y);
+                } else {
+                    if (this.vy > 0) this.setPosition(this.x, other.getY() - this.h);
+                    else if (this.vy < 0) this.setPosition(this.x, other.getY() - other.getH());
+                }
             }
         } else if(other instanceof Pickaxe) {
             this.hasPickaxe = true;
@@ -61,5 +70,15 @@ public class Player extends Entity{
         if(key == 38) this.vy = 0; // Up
         if(key == 39) this.vx = 0; // Right
         if(key == 40) this.vy = 0; // Down
+    }
+
+    public void die() {
+        this.lives--;
+        if(this.lives < 1) System.exit(1);
+        this.setPosition(Level.Tiles.w, 0);
+    }
+
+    public int getLives() {
+        return this.lives;
     }
 }

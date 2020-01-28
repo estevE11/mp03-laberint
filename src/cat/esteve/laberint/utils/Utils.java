@@ -172,6 +172,13 @@ public class Utils {
         return false;
     }
 
+    public static boolean AABBIntersects(int xa, int ya, int wa, int ha, int xb, int yb, int wb, int hb) {
+        Rectangle r0 = new Rectangle(xa, ya, wa, ha);
+        Rectangle r1 = new Rectangle(xb, yb, wb, hb);
+        if(r0.intersects(r1)) return true;
+        return false;
+    }
+
     /*public static int get_digits(float f) {
         Log.debug(String.valueOf(f));
         String[] splitted = String.valueOf(f).split(".");

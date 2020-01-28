@@ -1,13 +1,24 @@
 package cat.esteve.laberint.level;
 
+import cat.esteve.laberint.entities.Entity;
+import cat.esteve.laberint.entities.Pickaxe;
+import cat.esteve.laberint.entities.Player;
+import cat.esteve.laberint.entities.Rock;
 import cat.esteve.laberint.utils.Utils;
+
+import java.util.LinkedList;
 
 public class LevelLoader {
     public static class LevelData {
         public String name;
         public Level.Tiles[][] tiles;
         public int w, h;
-        public int playerX, playerY;
+        public Player p;
+        public LinkedList<Entity> entities;
+
+        public LevelData() {
+            this.entities = new LinkedList<Entity>();
+        }
     }
 
     public static LevelData load(String path) {
@@ -37,13 +48,28 @@ public class LevelLoader {
                     case 's':
                         data.tiles[x][y] = Level.Tiles.FLOOR;
                         break;
-                    case '#':
+                    case '1':
                         data.tiles[x][y] = Level.Tiles.WALL;
                         break;
                     case 'p':
                         data.tiles[x][y] = Level.Tiles.FLOOR;
-                        data.playerX = x * Level.Tiles.w;
-                        data.playerY = y * Level.Tiles.h;
+                        Player p = new Player();
+                        p.setPosition(x*Level.Tiles.w, y*Level.Tiles.h);
+                        data.entities.add(p);
+                        data.p = p;
+                        data.tiles[x][y] = Level.Tiles.FLOOR;
+                        break;
+                    case '2':
+                        Rock r = new Rock();
+                        r.setPosition(x*Level.Tiles.w+5, y*Level.Tiles.h+5);
+                        data.entities.add(r);
+                        data.tiles[x][y] = Level.Tiles.FLOOR;
+                        break;
+                    case 't':
+                        Pickaxe pick = new Pickaxe();
+                        pick.setPosition(x*Level.Tiles.w+10, y*Level.Tiles.h+10);
+                        data.entities.add(pick);
+                        data.tiles[x][y] = Level.Tiles.FLOOR;
                         break;
                 }
             }

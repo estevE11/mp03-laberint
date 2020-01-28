@@ -13,14 +13,15 @@ public class Entity {
 
     protected Level level;
 
+    protected boolean dead = false;
+
     private Point[] points = new Point[4];
 
-    public Entity(Level level) {
-        this.level = level;
-        init();
+    public Entity() {
     }
 
-    public void init() {
+    public void init(Level level) {
+        this.level = level;
         for(int i = 0; i < 4; i++) {
             points[i] = new Point(0, 0);
         }
@@ -63,7 +64,18 @@ public class Entity {
     }
 
     public void onCollide(Entity other) {
+    }
 
+    public boolean isDead() {
+        return this.dead;
+    }
+
+    public void die() {
+        this.dead = true;
+    }
+
+    public void reborn() {
+        this.dead = true;
     }
 
     public double getX() {
@@ -74,9 +86,16 @@ public class Entity {
         return this.y;
     }
 
+    public int getW() {
+        return this.w;
+    }
+
+    public int getH() {
+        return this.h;
+    }
+
     public void setPosition(double x, double y) {
         this.x = x;
         this.y = y;
-        System.out.println("Position set to: (" + x + ", " + y + ")");
     }
 }

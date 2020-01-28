@@ -19,6 +19,8 @@ public class Main implements Runnable {
     private Level level;
     private KeyboardInput kb;
 
+    private int fps = 0, tps = 0, ffps = 0, ftps = 0;
+
     private void start_thread(String thread_name) {
         Thread thread = new Thread(this, thread_name);
         thread.start();
@@ -36,25 +38,36 @@ public class Main implements Runnable {
         this.canvas.requestFocus();
         init();
         int fps = 0;
-        long old_time = System.currentTimeMillis();
-        long prev_time = old_time;
-        while(true) {
-            long current_time = System.currentTimeMillis();
-            long dt = current_time - prev_time;
-            prev_time = current_time;
-            update(dt);
-            render();
+        long lastTime = System.nanoTime();
+        double unprocessed = 0;
+        double nsPerTick = 1000000000.0 / 60;
+        long lastTimer1 = System.currentTimeMillis();
+
+        while (true) {
+            long now = System.nanoTime();
+            unprocessed += (now - lastTime) / nsPerTick;
+            lastTime = now;
+            while (unprocessed >= 1) {
+                tps++;
+                update();
+                unprocessed -= 1;
+            }
+
             fps++;
-            long _dt = current_time - old_time;
-            if(_dt >= 1000) {
-                this.frame.setTitle("Laberint - FPS: " + fps);
+            render();
+
+            if (System.currentTimeMillis() - lastTimer1 > 1000) {
+                lastTimer1 += 1000;
+                this.frame.setTitle("FPS: " + fps);
+                ffps = fps;
+                ftps = tps;
                 fps = 0;
-                old_time = current_time;
+                tps = 0;
             }
         }
     }
 
-    private void update(long dt) {
+    private void update() {
         this.level.update();
     }
 

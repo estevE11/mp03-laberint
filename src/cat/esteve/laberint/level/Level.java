@@ -1,9 +1,13 @@
 package cat.esteve.laberint.level;
 
+import cat.esteve.laberint.entities.Entity;
 import cat.esteve.laberint.entities.Player;
 import cat.esteve.laberint.gfx.MainCanvas;
+import cat.esteve.laberint.utils.Utils;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.util.LinkedList;
 
 public class Level {
     public enum Tiles {
@@ -21,6 +25,7 @@ public class Level {
         }
     }
 
+    private LinkedList<Entity> entities = new LinkedList<Entity>();
     private Tiles[][] tiles;
 
     private Player player;
@@ -29,17 +34,32 @@ public class Level {
         init();
     }
 
+    private int tickCount = 0;
+
     public void init() {
         LevelLoader.LevelData level_data = LevelLoader.load("res/levels/test_level.lvl");
+        this.player = level_data.p;
         this.tiles = level_data.tiles;
         if (this.tiles == null) throw new AssertionError();
-
-        this.player = new Player(this);
-        this.player.setPosition(level_data.playerX, level_data.playerY);
+        this.entities = level_data.entities;
+        for(Entity e : entities) {
+            e.init(this);
+        }
     }
 
     public void update() {
-        this.player.update();
+        for(Entity e : entities) {
+            e.update();
+            for(Entity other : entities) {
+                if(e != other) {
+                    if(checkCollision(e, other)) {
+                        e.onCollide(other);
+                        other.onCollide(e);
+                    }
+                }
+            }
+            if(e.isDead()) this.entities.remove(e);
+        }
     }
 
     public void render(MainCanvas canvas) {
@@ -49,7 +69,36 @@ public class Level {
             }
         }
 
-        this.player.render(canvas);
+        for(Entity e : entities) {
+            e.render(canvas);
+        }
+
+        // Shadow
+        if(true) {
+            BufferedImage shadow = new BufferedImage(canvas.getWidth(), canvas.getHeight(), BufferedImage.TYPE_INT_ARGB);
+            double shadow_radius = Math.cos(tickCount / 10) * 10 + 100;
+            for (int y = 0; y < shadow.getHeight(); y++) {
+                for (int x = 0; x < shadow.getWidth(); x++) {
+                    double dist = new Point((int) this.player.getX() + (this.player.getW() / 2), (int) this.player.getY() + (this.player.getH() / 2)).distance(x, y);
+                    if (dist > shadow_radius) {
+                        shadow.setRGB(x, y, new Color(0, 0, 0, 255).getRGB());
+                    } else {
+                        shadow.setRGB(x, y, new Color(0, 0, 0, (int) (dist * 255 / shadow_radius)).getRGB());
+                    }
+                }
+            }
+
+            canvas.getG().drawImage(shadow, 0, 0, null);
+        }
+        this.tickCount++;
+    }
+
+    public boolean checkCollision(Entity e0, Entity e1){
+        return Utils.AABBIntersects((int)e0.getX(), (int)e0.getY(), e0.getW(), e0.getH(), (int)e1.getX(), (int)e1.getY(), e1.getW(), e1.getH());
+    }
+
+    public void add() {
+
     }
 
     public void onKeyDown(int key) {

@@ -1,4 +1,26 @@
 package cat.esteve.laberint.entities;
 
-public class Pickaxe {
+import cat.esteve.laberint.gfx.MainCanvas;
+import cat.esteve.laberint.level.Level;
+
+import java.awt.*;
+
+public class Pickaxe extends Entity {
+    public Pickaxe() {
+    }
+
+    public void init(Level level) {
+        super.init(level);
+        this.w = Level.Tiles.w-20;
+        this.h = Level.Tiles.h-20;
+        this.color = Color.PINK;
+    }
+
+    public void update() {
+        super.update();
+    }
+
+    public void render(MainCanvas canvas) {
+        super.render(canvas);
+    }
 }
